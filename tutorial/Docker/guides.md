@@ -411,6 +411,159 @@
             # 单次健康检查超过 5 秒未完成则视为失败。
             ```
 
+            - ***-h, --hostname***
+
+            **作用:** 设置容器内的主机名。
+
+            ```bash
+            docker run --hostname mycontainer myimage
+            # 这个命令将容器的主机名设置为 mycontainer。
+            ```
+
+            - ***--init***
+
+            **作用:** 在容器内运行一个 init 进程，该进程负责转发信号并回收进程。
+
+            ```bash
+            docker run --init myimage
+            # 这将在容器中启动一个 init 系统，可以更好地管理信号和进程。
+            ```
+
+            - ***-i, --interactive***
+
+            **作用:** 保持标准输入(STDIN)开放，即使没有附加也是如此。
+
+            ```bash
+            docker run -i myimage
+            # 这使得容器保持交互式，允许用户通过命令行与之交互。
+            ```
+
+            - ***--io-maxbandwidth (Windows only)***
+
+            **作用:** 为系统驱动设定最大 IO 带宽限制。
+
+            ```bash
+            docker run --io-maxbandwidth 100MB myimage
+            # 限制容器在系统驱动上的 IO 带宽不超过每秒 100MB。
+            ```
+
+            - ***--io-maxiops (Windows only)***
+
+            **作用:** 为系统驱动设定最大 IOps (输入/输出操作每秒)限制。
+
+            ```bash
+            docker run --io-maxiops 300 myimage
+            # 限制容器在系统驱动上的 IOps 不超过每秒 300次。
+            ```
+
+            - ***--ip***
+
+            **作用:** 分配一个 IPv4 地址给容器。
+
+            ```bash
+            docker run --ip 172.30.100.104 myimage
+            # 这将为容器指定一个特定的 IPv4 地址。
+            ```
+
+            - ***--ip6***
+
+            **作用:** 分配一个 IPv6 地址给容器。
+
+            ```bash
+            docker run --ip6 2001:db8::33 myimage
+            # 这将为容器指定一个特定的 IPv6 地址。
+            ```
+
+            - ***--ipc***
+
+            **作用:** 设置容器的 IPC (进程间通信) 模式。
+
+            ```bash
+            docker run --ipc host myimage
+            # 允许容器使用宿主机的 IPC 命名空间。
+            ```
+
+            - ***--isolation (Windows only)***
+
+            **作用:** 设置容器的隔离技术。
+
+            ```bash
+            docker run --isolation hyperv myimage
+            # 在 Windows 上为容器使用 Hyper-V 隔离。
+            ```
+
+            - ***--kernel-memory***
+
+            **作用:** 为容器设置内核内存限制。
+
+            ```bash
+            docker run --kernel-memory 200M myimage
+            # 限制容器内核内存使用量为 200MB。
+            ```
+
+            - ***-l, --label***
+
+            **作用:** 设置容器的元数据标签。
+
+            ```bash
+            docker run --label "name=webserver" myimage
+            # 为容器添加一个标签，标签名为 name，值为 webserver。
+            ```
+
+            - ***--label-file***
+
+            **作用:** 从文件中读入标签。
+
+            ```bash
+            docker run --label-file labels.txt myimage
+            # 从 labels.txt 文件中读取标签，并应用于容器。
+            ```
+
+            - ***--link***
+
+            **作用:** 添加链接到另一个容器。
+
+            ```bash
+            docker run --link mydb:db myimage
+            # 链接到名为 mydb 的容器，别名为 db。
+            ```
+
+            - ***--link-local-ip***
+
+            **作用:** 为容器设置 IPv4/IPv6 链路本地地址。
+
+            ```bash
+            docker run --link-local-ip 169.254.34.12 myimage
+            # 设置容器的链路本地 IPv4 地址。
+            ```
+
+            - ***--log-driver***
+
+            **作用:** 为容器指定日志驱动程序。
+
+            ```bash
+            docker run --log-driver json-file myimage
+            # 设置容器使用 json-file 日志驱动记录日志。
+            ```
+
+            - ***--log-opt***
+
+            **作用:** 设置日志驱动的选项。
+
+            ```bash
+            docker run --log-driver json-file --log-opt max-size=10m myimage
+            # 设置日志文件最大为 10MB。
+            ```
+
+            - ***--mac-address***
+
+            **作用:** 为容器设置 MAC 地址。
+
+            ```bash
+            docker run --mac-address 92:d0:c6:0a:29:33 myimage
+            # 为容器指定一个特定的 MAC 地址。
+            ```
+
         - **exec**
         - **ps**
         - **build**
