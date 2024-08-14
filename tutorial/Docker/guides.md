@@ -564,6 +564,168 @@
             # 为容器指定一个特定的 MAC 地址。
             ```
 
+            - ***-m, --memory***
+
+            **作用:** 限制容器可以使用的内存总量。
+
+            ```bash
+            docker run -m 512m myimage
+            # 这将限制容器最多使用 512 MB 的内存。
+            ```
+
+            - ***--memory-reservation***
+
+            **作用:** 设置容器的内存软限制。当系统内存紧张时，具有较低内存保留的容器首先被 OOM 杀手处理。
+
+            ```bash
+            docker run --memory-reservation 256m myimage
+            # 这为容器设置了 256 MB 的内存软限制。
+            ```
+
+            - ***--memory-swap***
+
+            **作用:** 设置容器内存加上 swap 的总额限制。'-1' 表示无限制。
+
+            ```bash
+            docker run --memory-swap 1g myimage
+            # 这将容器的内存加 swap 的总额限制为 1 GB。
+            ```
+
+            - ***--memory-swappiness***
+
+            **作用:** 调整容器使用 swap 的倾向性（从 0 到 100）。
+
+            ```bash
+            docker run --memory-swappiness 30 myimage
+            # 设置容器倾向于较少使用 swap 空间。
+            ```
+
+            - ***--mount***
+
+            **作用:** 挂载存储卷、主机目录或其他存储设备到容器。
+
+            ```bash
+            docker run --mount type=bind,source=/data,target=/app myimage
+            # 这将主机的 /data 目录挂载到容器的 /app 目录。
+            ```
+
+            - ***--name***
+
+            **作用:** 指定容器的名称。
+
+            ```bash
+            docker run --name mycontainer myimage
+            # 为运行的容器指定名称为 mycontainer。
+            ```
+
+            - ***--network***
+
+            **作用:** 连接容器到一个网络。
+
+            ```bash
+            docker run --network mynetwork myimage
+            # 这将容器连接到名为 mynetwork 的网络。
+            ```
+
+            - ***--network-alias***
+
+            **作用:** 为容器在网络上设置别名。
+
+            ```bash
+            docker run --network mynetwork --network-alias myapp myimage
+            # 这将为容器在 mynetwork 网络上设置别名 myapp。
+            ```
+
+            - ***--no-healthcheck***
+
+            **作用:** 禁用容器的健康检查。
+
+            ```bash
+            docker run --no-healthcheck myimage
+            # 启动容器时禁用任何已定义的健康检查。
+            ```
+
+            - ***--oom-kill-disable***
+
+            **作用:** 禁用 Out Of Memory Killer 对容器的作用。
+
+            ```bash
+            docker run --oom-kill-disable myimage
+            # 这可以防止当容器耗尽内存时被系统强制终止。
+            ```
+
+            - ***--oom-score-adj***
+
+            **作用:** 调整容器在主机上的 OOM 优先级。
+
+            ```bash
+            docker run --oom-score-adj 100 myimage
+            # 这将提高容器的 OOM 优先级，使其更有可能在内存不足时被杀死。
+            ```
+
+            - ***--pid***
+
+            **作用:** 设置容器使用的 PID 命名空间。
+
+            ```bash
+            docker run --pid=host myimage
+            # 这允许容器使用宿主机的 PID 命名空间。
+            ```
+
+            - ***--pids-limit***
+
+            **作用:** 限制容器可以创建的进程数。
+
+            ```bash
+            docker run --pids-limit 100 myimage
+            # 限制容器最多可以创建 100 个进程。
+            ```
+
+            - ***--platform***
+
+            **作用:** 如果服务器支持多平台，设置容器的平台。
+
+            ```bash
+            docker run --platform linux/amd64 myimage
+            # 在多平台服务器上指定使用 AMD64 架构。
+            ```
+
+            - ***--privileged***
+
+            **作用:** 给予容器额外的特权。
+
+            ```bash
+            docker run --privileged myimage
+            # 这允许容器访问宿主机的设备和其他资源，通常用于容器需要执行高权限操作时。
+            ```
+
+            - ***-p, --publish***
+
+            **作用:** 将容器的端口映射到宿主机的端口。
+
+            ```bash
+            docker run -p 8080:80 myimage
+            # 这将容器的 80 端口映射到宿主机的 8080 端口。
+            ```
+
+            - ***-P, --publish-all***
+
+            **作用:** 将所有暴露的端口随机映射到宿主机的端口。
+
+            ```bash
+            docker run -P myimage
+            # 这将容器内所有 EXPOSE 指令暴露的端口随机映射到宿主机端口。
+            ```
+
+            - ***--pull***
+
+            **作用:** 在运行前拉取镜像。
+
+            ```bash
+            docker run --pull always myimage
+            # 这确保每次运行容器前都尝试更新镜像。
+            ```
+
         - **exec**
         - **ps**
         - **build**
