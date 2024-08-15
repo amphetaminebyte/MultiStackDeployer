@@ -726,6 +726,195 @@
             # 这确保每次运行容器前都尝试更新镜像。
             ```
 
+            - ***-q, --quiet***
+
+            **作用:** 在拉取镜像时抑制输出。
+
+            ```bash
+            docker run -q myimage
+            # 在执行命令时，此选项会抑制所有拉取镜像的输出，只显示容器 ID。
+            ```
+
+            - ***--read-only***
+
+            **作用:** 将容器的根文件系统挂载为只读。
+
+            ```bash
+            docker run --read-only myimage
+            # 这确保容器内的应用程序不能写入或修改任何根文件系统中的文件。
+            ```
+
+            - ***--restart***
+
+            **作用:** 设置容器退出时的重启策略。
+
+            ```bash
+            docker run --restart always myimage
+            # 设置容器在退出时总是自动重启。
+            ```
+
+            - ***--rm***
+
+            **作用:** 容器退出时自动删除容器及其关联的匿名卷。
+
+            ```bash
+            docker run --rm myimage
+            # 这样容器在退出后会被自动清理，适用于临时或测试环境。
+            ```
+
+            - ***--runtime***
+
+            **作用:** 指定容器使用的运行时。
+
+            ```bash
+            docker run --runtime nvidia myimage
+            # 这通常用于需要 GPU 支持的容器，如使用 NVIDIA Docker 运行时。
+            ```
+
+            - ***--security-opt***
+
+            **作用:** 设置容器的安全选项。
+
+            ```bash
+            docker run --security-opt seccomp=unconfined myimage
+            # 禁用 Seccomp 安全配置文件，增加容器的权限。
+            ```
+
+            - ***--shm-size***
+
+            **作用:** 设置容器 /dev/shm 的大小。
+
+            ```bash
+            docker run --shm-size 2g myimage
+            # 为共享内存设置 2GB 的大小，适用于需要大量共享内存的应用。
+            ```
+
+            - ***--sig-proxy***
+
+            **作用:** 代理接收到的信号到容器的进程（默认为 true）。
+
+            ```bash
+            docker run --sig-proxy=false myimage
+            # 关闭信号代理，容器不会接收到外部发送的信号。
+            ```
+
+            - ***--stop-signal***
+
+            **作用:** 设置用于停止容器的信号。
+
+            ```bash
+            docker run --stop-signal SIGTERM myimage
+            # 使用 SIGTERM 信号来停止容器。
+            ```
+
+            - ***--stop-timeout***
+
+            **作用:** 设置停止容器前的超时时间（单位为秒）。
+
+            ```bash
+            docker run --stop-timeout 30 myimage
+            # 设置容器在收到停止信号后，等待 30 秒再强制停止。
+            ```
+
+            - ***--storage-opt***
+
+            **作用:** 设置容器使用的存储驱动选项。
+
+            ```bash
+            docker run --storage-opt size=120G myimage
+            # 为容器的可写层设置 120 GB 的大小。
+            ```
+
+            - ***--sysctl***
+
+            **作用:** 设置内核参数。
+
+            ```bash
+            docker run --sysctl net.ipv4.ip_forward=1 myimage
+            # 启用容器内的 IP 转发。
+            ```
+
+            - ***--tmpfs***
+
+            **作用:** 挂载一个 tmpfs 目录。
+
+            ```bash
+            docker run --tmpfs /tmp myimage
+            # 在容器中创建一个临时文件存储空间，存储在内存中，退出时自动清除。
+            ```
+
+            - ***-t, --tty***
+
+            **作用:** 为容器分配一个伪终端。
+
+            ```bash
+            docker run -t myimage
+            # 这使容器可以像真正的终端一样接收输入。
+            ```
+
+            - ***-u, --user***
+
+            **作用:** 设置容器内进程运行的用户名或 UID。
+
+            ```bash
+            docker run -u nginx myimage
+            # 以 nginx 用户身份运行容器。
+            ```
+
+            - ***--userns***
+
+            **作用:** 设置容器使用的用户命名空间。
+
+            ```bash
+            docker run --userns host myimage
+            # 使容器使用宿主机的用户命名空间。
+            ```
+
+            - ***--uts***
+
+            **作用:** 设置容器使用的 UTS（UNIX Time-sharing System）命名空间。
+
+            ```bash
+            docker run --uts host myimage
+            # 使容器共享宿主机的 UTS 命名空间，包括主机名和域名。
+            ```
+
+            - ***-v, --volume***
+
+            **作用:** 将卷或主机目录绑定挂载到容器。
+
+            ```bash
+            docker run -v /host/path:/container/path myimage
+            # 将宿主机的 /host/path 目录挂载到容器的 /container/path。
+            ```
+
+            - ***--volume-driver***
+
+            **作用:** 为卷指定一个可选的卷驱动程序。
+
+            ```bash
+            docker run --volume-driver local myimage
+            # 为挂载的卷使用本地驱动程序。
+            ```
+
+            - ***--volumes-from***
+
+            **作用:** 从其他容器挂载卷。
+
+            ```bash
+            docker run --volumes-from other-container myimage
+            # 从名为 other-container 的容器中挂载卷。
+            ```
+
+            - ***-w, --workdir***
+
+            **作用:** 设置容器内的工作目录。
+
+            ```bash
+            docker run -w /app myimage
+            # 设置 /app 为容器的工作目录。
+            ```
+
         - **exec**
         - **ps**
         - **build**
