@@ -1,0 +1,68 @@
+services:
+  pg-0:
+    image: docker.io/bitnami/postgresql-repmgr:${POSTGRESQL_VERSION}
+    hostname: pg-0
+    ports:
+      - 15432:5432
+    volumes:
+      - pg_data_0:/bitnami/postgresql
+      - pg_config_0:/bitnami/repmgr/conf
+    environment:
+      POSTGRESQL_POSTGRES_PASSWORD: ${POSTGRESQL_POSTGRES_PASSWORD}
+      POSTGRESQL_USERNAME: ${POSTGRESQL_USERNAME}
+      POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
+      POSTGRESQL_DATABASE: ${POSTGRESQL_DATABASE}
+      REPMGR_PASSWORD: ${REPMGR_PASSWORD}
+      REPMGR_PRIMARY_HOST: pg-0
+      REPMGR_PRIMARY_PORT: 5432
+      REPMGR_PARTNER_NODES: pg-0,pg-1:5432
+      REPMGR_NODE_NAME: pg-0
+      REPMGR_NODE_NETWORK_NAME: pg-0
+      REPMGR_PORT_NUMBER: 5432
+    networks:
+      - postgresql-repmgr-network
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == node01
+          
+  pg-1:
+    image: docker.io/bitnami/postgresql-repmgr:${POSTGRESQL_VERSION}
+    hostname: pg-1
+    ports:
+      - 15433:5432
+    volumes:
+      - pg_data_1:/bitnami/postgresql
+      - pg_config_1:/bitnami/repmgr/conf
+    environment:
+      POSTGRESQL_POSTGRES_PASSWORD: ${POSTGRESQL_POSTGRES_PASSWORD}
+      POSTGRESQL_USERNAME: ${POSTGRESQL_USERNAME}
+      POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
+      POSTGRESQL_DATABASE: ${POSTGRESQL_DATABASE}
+      REPMGR_PASSWORD: ${REPMGR_PASSWORD}
+      REPMGR_PRIMARY_HOST: pg-0
+      REPMGR_PRIMARY_PORT: 5432
+      REPMGR_PARTNER_NODES: pg-0,pg-1:5432
+      REPMGR_NODE_NAME: pg-1
+      REPMGR_NODE_NETWORK_NAME: pg-1
+      REPMGR_PORT_NUMBER: 5432
+    networks:
+      - postgresql-repmgr-network
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == node02
+
+networks:
+  postgresql-repmgr-network:
+    driver: overlay
+
+volumes:
+  pg_data_0:
+    driver: local
+  pg_config_0:
+    driver: local
+  pg_data_1:
+    driver: local
+  pg_config_1:
+    driver: local
